@@ -56,7 +56,7 @@ async def dump_channels():
             for h in m.channel_mentions:
                 d[n]['channel_mentions'].append({'name': h.name, 'guild': str(h.guild), 'position': h.position,
                                                  'changed_roles': str(h.changed_roles), 'mention': h.mention,
-                                                 'created_at': str(h.created_at), 'category': h.category,
+                                                 'created_at': str(h.created_at), 'category': str(h.category),
                                                  'permissions_synced': h.permissions_synced})
             d[n]['role_mentions'] = []
             for r in m.role_mentions:
