@@ -56,15 +56,16 @@ async def dump_channels():
             for h in m.channel_mentions:
                 d[n]['channel_mentions'].append({'name': h.name, 'guild': str(h.guild), 'position': h.position,
                                                  'changed_roles': str(h.changed_roles), 'mention': h.mention,
-                                                 'created_at': h.created_at, 'category': h.category,
+                                                 'created_at': str(h.created_at), 'category': h.category,
                                                  'permissions_synced': h.permissions_synced})
             d[n]['role_mentions'] = []
             for r in m.role_mentions:
                 d[n]['role_mentions'].append({'id': r.id, 'name': r.name, 'guild': str(r.guild), 'hoist': r.hoist,
-                                              'position': r.position, 'managed': r.managed, 'mentionable':
-                                                  r.mentionable, 'is_default()': r.is_default(), 'permissions':
-                                                  r.permissions, 'colour': r.colour, 'created_at': r.created_at,
-                                              'mention': r.mention, 'members': r.members, })
+                                              'position': r.position, 'managed': r.managed,
+                                              'mentionable': r.mentionable, 'is_default()': r.is_default(),
+                                              'permissions': r.permissions, 'colour': r.colour,
+                                              'created_at': str(r.created_at), 'mention': r.mention,
+                                              'members': r.members, })
             d[n]['id'] = m.id
             d[n]['webhook_id'] = m.webhook_id
             d[n]['attachments'] = []
