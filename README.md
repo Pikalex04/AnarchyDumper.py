@@ -1,6 +1,6 @@
-# AnarchyDumper
+# AnarchyDumper.py
 
-AnarchyDumper is a program written in Python that dumps all the contents of one or more Discord text channels.
+AnarchyDumper.py is a program written in Python that dumps all the contents of one or more Discord text channels.
 
 ## About
 
