@@ -33,6 +33,14 @@ Ever regretted deleting it because it had some good messages on it?
 Well, that is the reason of life of AnarchyDumper.
 *Honestly, it has been a life saviour to me.*
 
+## Usage
+
+**First of all you need a Discord account that will run AnarchyDumper.** The program accesses to the channels you want to dump by logging into an account that can see these channels. And you need the token for that account. It works with both normal users and bots, however pay attention that injecting those kind of things into your own user account is against Discord's Terms of Service. As such, if you get caught using it... Well, most likely your account is going to be deleted. So pay attention if you're too lazy to use a bot!
+
+If you are using the release, run `run.exe` after you completed the installation you can find below.
+
+Instead if you downloaded the source code, you need to install [`Python`](https://www.python.org/downloads/) and [`discord.py`](https://github.com/Rapptz/discord.py) before running the AnarchyDumper. The installation process then is pretty much the same.
+
 ## Installation
 
 **First!** Select the version you want from the last release.
@@ -60,12 +68,6 @@ TOKEN = 'Ex4mPl3 T0KeN'
 BOT = True
 CHANNELS = [444433355555, 777777722, 9999999991]
 ```
-
-## Usage
-
-If you are using the release, run `run.exe` after you completed the installation.
-
-Instead if you downloaded the source code, you need to install [`Python`](https://www.python.org/downloads/) and [`discord.py`](https://github.com/Rapptz/discord.py) before running the AnarchyDumper. The installation process then is pretty much the same as above.
 
 ## TODO
 - [x] Serialize every type of object dumped to JSON.
