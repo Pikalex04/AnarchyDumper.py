@@ -74,5 +74,10 @@ Instead if you downloaded the source code, you need to install [`Python`](https:
 ## Contributing
 I am free to receive Pull Requests. It would be very cool if AnarchyDumper gets better in the future.
 
+## From the Head-Champo, Pikalex
+Yo, thanks for reading, very appreciated indeed :zoomedEyes:
+
+SO, if you want to talk to me somewhere, I'd recommend to hit me up on Discord. My username is `Pikalex04#8877`.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
