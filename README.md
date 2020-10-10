@@ -5,23 +5,21 @@ AnarchyDumper is a program written in Python that dumps all the contents of one 
 ## About
 
 AnarchyDumper. Weird name for such a program, you may think.
-Well, perhaps it may seem like that at first sight, however I think it is a very propriate name.
+Well, perhaps it seems like that at first sight, however I think it's a very appropriate name.
 
-Why? Well, it is pretty simple.
+Why? Well, it's simple.
 
 >AnarchyDumper does not dump everything from a channel, it does **more**.
 >
 >Rather than just backing up every message sent and their content, authors, date of creation, it dumps EVERYTHING!
+>***From*** every asset or attachment sent ***to*** all the ID of each user, channel or role that was mentioned in one message.
 >
->From every asset or attachment sent to all the ID of each user, channel or role that was mentioned in one message.
+>Thanks to [`discord.py`](https://github.com/Rapptz/discord.py) and its very comfortable support for the Discord API, AnarchyDumper takes everything from a channel and everything related to it and stores everything in **cool and simple JSON files**... And folders for attachments and assets.
+>Each attachment and asset has **its own ID** set by the bot, so you can find out what message the attachment or asset was sent in!
 >
->Thanks to [`discord.py`](https://github.com/Rapptz/discord.py) and its very comfortable support for the Discord API, AnarchyDumper takes everything from a channel and everything related to it and stores everything in cool and simple JSON files and folders for attachments and assets.
+>Since it dumps everything you can also set up your own builder that **re-builds the messages in another type of format**/, starting from simple .txt files to a recreation of an image for each message!
 >
->Each attachment and asset has its own ID made by the bot, so you can find out what message the attachment or asset was sent in!
->
->Since it dumps everything you can also set up your own builder that re-builds the messages in another type of format, starting from simple .txt files to a recreation of an image for each message!
->
-> Isn't it a bit too powerful? *Well, perhaps that's because it's from people who live in Anarchy to people who live in Anarchy.*
+> Isn't it a bit too powerful? ***Well, perhaps that's because it's coming from people who live in Anarchy to people who live in Anarchy.***
 
 **Are there any cons?** Well, yes. *Since the AnarchyDumper dumps so many things, the size of each dump will be pretty... Fat.*
 But I am pretty sure they will not be THAT big (*for a channel with over 1 milion messages around 500 MB should be enough*).
