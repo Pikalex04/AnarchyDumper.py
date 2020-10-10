@@ -72,6 +72,8 @@ CHANNELS = [444433355555, 777777722, 9999999991]
 ## TODO
 - [x] Serialize every type of object dumped to JSON.
 - [ ] Make the dumper not loop on itself on any object.
+- [ ] Complete it.
+- [ ] Add releases.
 
 ## Contributing
 I am free to receive Pull Requests. It would be very cool if AnarchyDumper gets better in the future.
