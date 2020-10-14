@@ -22,10 +22,8 @@ Why? Well, it's simple.
 > Isn't it a bit too powerful? ***Well, perhaps that's because it's coming from people who live in Anarchy to people who live in Anarchy.***
 
 **Are there any cons?** Well, yes. *Since the AnarchyDumper dumps so many things, the size of each dump will be pretty... Fat.*
-However not that much. We dumped a channel with over 7000 messages and the result ended up being a JSON file 8 MB big.
 
-By the way, it is not slow at all. It may look like it is because it dumps a lot of things, but it is pretty optimized so you should not run in any performance issues.
-The channel we dumped that had over 7000 messages got backed up in just 75 seconds.
+By the way, it is not slow at all. It may look like it is because it dumps a lot of things, but it is pretty optimized so you should not run into any performance issue.
 
 ## Why?
 
@@ -50,10 +48,12 @@ You can't decide on what to choose? Let me help you right here then!
 
 ### Faccili
 > This version makes very easy to build JSON files, however they will end up being pretty big. Choose it if you want to use a simple-to-edit builder!
+>
 > Speed: ~107 messages per second; Size: ~1000 messages per MB
 
 ### Piccioccu
 > This version makes instead very small sized JSON files, however it may be more difficult to build. Choose it if you aren't going to build a backup in another format!
+>
 > Speed: ~115 messages per second; Size: ~1333 messages per MB
 
 **Last!** Open settings.json like a common .txt file and follow these steps:
@@ -75,7 +75,8 @@ A bit confused? Here is an example of how your `settings.json` should look:
 - [x] Make the dumper not loop on itself on any object.
 - [x] Complete it.
 - [x] Clean it.
-- [ ] Add releases.
+- [x] Add releases.
+- [ ] Maybe add a builder?
 
 ## Contributing
 I am free to receive Pull Requests. It would be very cool if AnarchyDumper gets better in the future.
