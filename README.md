@@ -17,7 +17,7 @@ Why? Well, it's simple.
 >Thanks to [`discord.py`](https://github.com/Rapptz/discord.py) and its very comfortable support for the Discord API, AnarchyDumper takes everything from a channel and everything related to it and stores everything in **cool and simple JSON files**... And folders for attachments and assets.
 >Each attachment and asset has **its own ID** set by the bot, so you can find out what message the attachment or asset was sent in!
 >
->Since it dumps everything you can also set up your own builder that **re-builds the messages in another type of format**/, starting from simple .txt files to a recreation of an image for each message!
+>Since it dumps everything you can also set up your own builder that **re-builds the messages in another type of format**, starting from simple .txt files to a recreation of an image for each message!
 >
 > Isn't it a bit too powerful? ***Well, perhaps that's because it's coming from people who live in Anarchy to people who live in Anarchy.***
 
@@ -38,7 +38,7 @@ Well, that is the reason of life of AnarchyDumper.
 
 **First of all you need a Discord account that will run AnarchyDumper.** The program accesses to the channels you want to dump by logging into an account that can see these channels. And you need the token for that account. It works with both normal users and bots, however pay attention that injecting those kind of things into your own user account is against Discord's Terms of Service. As such, if you get caught using it... Well, most likely your account is going to be deleted. So pay attention if you're too lazy to use a bot!
 
-If you are using the release, run `run.exe` after you completed the installation you can find below.
+If you are using the release, run `AnarchyDumper.exe` after you completed the installation you can find below.
 
 Instead if you downloaded the source code, you need to install [`Python`](https://www.python.org/downloads/) and [`discord.py`](https://github.com/Rapptz/discord.py) before running the AnarchyDumper. The installation process then is pretty much the same.
 
