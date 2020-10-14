@@ -1,12 +1,20 @@
 from discord import Client
-from SETTINGS import TOKEN, BOT, CHANNELS
-from json import dump
+from json import dump, load
 from time import time
 from os import mkdir, getcwd
+from sys import exit
+from asyncio import sleep
 
 client = Client()
 x = 0
 b = 0
+
+
+def json_load(n):
+    with open(n, 'r') as f:
+        a = load(f)
+        f.close()
+        return a
 
 
 def json_dump(n, d):
@@ -275,7 +283,7 @@ def dump_system_channel_flags(f):
 
 async def start():
     x = time()
-    for c in CHANNELS:
+    for c in json_load('settings.json')['channels']:
         c = client.get_channel(c)
         i = c.id
         w = getcwd()
@@ -327,14 +335,19 @@ async def start():
             print(f'Message {n} got dumped successfully.')
             n += 1
         json_dump(f'dumps/{c.id}/messages.json', d)
-        print(f'{c.name} dumped successfully.')
-    print(f'Operation completed successfully in {time() - x}')
+        print(f'{c.name} ({c.id}) dumped successfully.')
+    print(f'Operation completed successfully in {time() - x} seconds.')
+    await sleep(5)
 
 
 @client.event
 async def on_ready():
+    print('Ready! Starting process...')
     await start()
     exit()
 
 
-client.run(TOKEN, bot=BOT)
+print('Loading...')
+
+
+client.run(json_load('settings.json')['token'], bot=json_load('settings.json')['bot'])
