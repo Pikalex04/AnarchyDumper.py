@@ -22,9 +22,10 @@ Why? Well, it's simple.
 > Isn't it a bit too powerful? ***Well, perhaps that's because it's coming from people who live in Anarchy to people who live in Anarchy.***
 
 **Are there any cons?** Well, yes. *Since the AnarchyDumper dumps so many things, the size of each dump will be pretty... Fat.*
-But I am pretty sure they will not be THAT big (*10 messages are around 37 KB with the version Faccilli*).
+However not that much. We dumped a channel with over 7000 messages and the result ended up being a JSON file 8 MB big.
 
 By the way, it is not slow at all. It may look like it is because it dumps a lot of things, but it is pretty optimized so you should not run in any performance issues.
+The channel we dumped that had over 7000 messages got backed up in just 95 seconds.
 
 ## Why?
 
@@ -72,8 +73,8 @@ CHANNELS = [444433355555, 777777722, 9999999991]
 ## TODO
 - [x] Serialize every type of object dumped to JSON.
 - [x] Make the dumper not loop on itself on any object.
-- [ ] Complete it.
-- [ ] Clean it.
+- [x] Complete it.
+- [x] Clean it.
 - [ ] Add releases.
 
 ## Contributing
