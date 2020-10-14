@@ -54,20 +54,18 @@ You can't decide on what to choose? Let me help you right here then!
 ### Piccioccu
 > This version makes instead very small sized JSON files, however it may be more difficult to build. Choose it if you aren't going to build a backup in another format!
 
-**Last!** Open settings.py like if it's a .txt file and follow these steps:
+**Last!** Open settings.json like a common .txt file and follow these steps:
 
-**1. Select your token!** In `TOKEN =` put the token of the user or bot you'll use AnarchyDumper in.
+**1. Select your token!** In `token: ""` put the token of the user or bot you'll use AnarchyDumper in between the empty quotetion marks.
 
-**2. Decide your species!** In `BOT`, put `True` if you are using AnarchyDumper in a bot, else put `False` if you are using AnarchyDumper in a user.
+**2. Decide your species!** In `bot: `, put ` true` if you are using AnarchyDumper in a bot, else put ` false` if you are using AnarchyDumper in a user right after the colon.
 
-**3. Choice your targets!** In `CHANNELS`, put the ID of all the channels you want to dump between the brackets.
+**3. Choice your targets!** In `channels: []`, put the ID of all the channels you want to dump between the brackets separated by a comma and a space.
 
-A bit confused? Here is an example of how your `SETTINGS.py` should look:
+A bit confused? Here is an example of how your `settings.json` should look:
 
-```python
-TOKEN = 'Ex4mPl3 T0KeN'
-BOT = True
-CHANNELS = [444433355555, 777777722, 9999999991]
+```json
+{"token": "Ex4mPl3 T0keN", "bot": true, "channels": [444433355555, 777777722, 9999999991]}
 ```
 
 ## TODO
