@@ -25,7 +25,7 @@ Why? Well, it's simple.
 However not that much. We dumped a channel with over 7000 messages and the result ended up being a JSON file 8 MB big.
 
 By the way, it is not slow at all. It may look like it is because it dumps a lot of things, but it is pretty optimized so you should not run in any performance issues.
-The channel we dumped that had over 7000 messages got backed up in just 95 seconds.
+The channel we dumped that had over 7000 messages got backed up in just 75 seconds.
 
 ## Why?
 
@@ -50,9 +50,11 @@ You can't decide on what to choose? Let me help you right here then!
 
 ### Faccili
 > This version makes very easy to build JSON files, however they will end up being pretty big. Choose it if you want to use a simple-to-edit builder!
+> Speed: ~107 messages per second; Size: ~1000 messages per MB
 
 ### Piccioccu
 > This version makes instead very small sized JSON files, however it may be more difficult to build. Choose it if you aren't going to build a backup in another format!
+> Speed: ~115 messages per second; Size: ~1333 messages per MB
 
 **Last!** Open settings.json like a common .txt file and follow these steps:
 
