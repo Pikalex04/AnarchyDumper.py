@@ -2,15 +2,24 @@ from discord import Client
 from SETTINGS import TOKEN, BOT, CHANNELS
 from json import dump
 from time import time
+from os import mkdir, getcwd
 
 client = Client()
 x = 0
+b = 0
 
 
 def json_dump(n, d):
     with open(n, 'w+') as f:
         dump(d, f)
         f.close()
+
+
+def make_dir(d):
+    try:
+        mkdir(d)
+    except FileExistsError:
+        return
 
 
 def dump_datetime(d):
@@ -49,6 +58,25 @@ def soft_dump_user(u):
             'is_avatar_animated()': u.is_avatar_animated(), 'mention': u.mention}
 
 
+async def dump_attachment(a, c):
+    global b
+    await a.save(f'dumps/{c}/attachments/{b}_{a.filename}')
+    d = {'id': a.id, 'size': a.size, 'height': a.height, 'width': a.width, 'filename': a.filename, 'url': a.url,
+         'proxy_url': a.proxy_url, 'is_spoiler()': a.is_spoiler(), 'download_id': b}
+    b += 1
+    return d
+
+
+async def dump_asset(a, c):
+    global x
+    try:
+        await a.save(f'dumps/{c}/assets/{x}')
+        x += 1
+    except Exception:
+        pass
+    return {}
+
+
 def soft_dump_message(m):
     return {'tts': m.tts, 'type': str(m.type), 'content': m.content, 'mention_everyone': m.mention_everyone, 'id': m.id,
             'webhook_id': m.webhook_id, 'pinned': m.pinned, 'activity': m.activity, 'application': m.application,
@@ -69,14 +97,7 @@ def dump_call_message(m):
             'channel': soft_dump_group_channel(m.channel), 'duration': dump_timedelta(m.duration)}
 
 
-async def dump_guild(g):
-    global x
-    for i in [g.icon_url, g.banner_url, g.splash_url, g.discovery_splash_url]:
-        try:
-            await i.save(f'assets\\{x}')
-        except Exception:
-            pass
-        x += 1
+async def dump_guild(g, c):
     return {'name': g.name, 'emojis': [].extend(soft_dump_emoji(emoji) for emoji in g.emojis), 'region': str(g.region),
             'afk_timeout': g.afk_timeout, 'afk_channel': soft_dump_voice_channel(g.afk_channel), 'icon': g.icon,
             'id': g.id, 'owner_id': g.owner_id,
@@ -101,6 +122,9 @@ async def dump_guild(g):
             'premium_subscribers': [].extend(soft_dump_member(member) for member in g.premium_subscribers),
             'roles': [].extend(soft_dump_role(role) for role in g.roles),
             'default_role': soft_dump_role(g.default_role), 'owner': soft_dump_member(g.owner),
+            'icon_url': await dump_asset(g.icon_url, c), 'banner_url': await dump_asset(g.banner_url, c),
+            'splash_url': await dump_asset(g.splash_url, c),
+            'discovery_splash_url': await dump_asset(g.discovery_splash_url, c),
             'is_icon_animated()': g.is_icon_animated(), 'member_count': g.member_count, 'chunked': g.chunked,
             'shard_id': g.shard_id, 'created_at': dump_datetime(g.created_at)}
 
@@ -141,13 +165,19 @@ def soft_dump_member(m):
 
 
 def soft_dump_emoji(e):
-    return {'name': e.name, 'id': e.id, 'require_colons': e.require_colons, 'animated': e.animated,
-            'managed': e.managed, 'guild_id': e.guild_id, 'available': e.available, 'is_usable()': e.is_usable()}
+    try:
+        return {'name': e.name, 'id': e.id, 'require_colons': e.require_colons, 'animated': e.animated,
+                'managed': e.managed, 'guild_id': e.guild_id, 'available': e.available, 'is_usable()': e.is_usable()}
+    except AttributeError:
+        return {'raw': e}
 
 
 def soft_dump_partial_emoji(e):
-    return {'name': e.name, 'animated': e.animated, 'id': e.id, 'is_custom_emoji()': e.is_custom_emoji(),
-            'is_unicode_emoji()': e.is_unicode_emoji()}
+    try:
+        return {'name': e.name, 'animated': e.animated, 'id': e.id, 'is_custom_emoji()': e.is_custom_emoji(),
+                'is_unicode_emoji()': e.is_unicode_emoji()}
+    except AttributeError:
+        return {'raw': e}
 
 
 def dump_role(r):
@@ -206,8 +236,8 @@ def dump_embed(e):
 def dump_color(c):
     try:
         return {'value': c.value, 'r': c.r, 'g': c.g, 'b': c.b}
-    except TypeError:
-        return {}
+    except AttributeError:
+        return {'raw': c}
 
 
 def dump_permissions(p):
@@ -245,11 +275,16 @@ def dump_system_channel_flags(f):
 
 async def start():
     x = time()
-    b = 0
     for c in CHANNELS:
         c = client.get_channel(c)
+        i = c.id
+        w = getcwd()
+        s = f'{w}/dumps/{i}'
+        for r in [s, f'{s}/attachments', f'{s}/assets']:
+            make_dir(r)
         d = {}
         n = 0
+        json_dump(f'dumps/{c.id}/guild.json', await dump_guild(c.guild, i))
         async for m in c.history(limit=None, oldest_first=True):
             d[n] = {}
             d[n]['tts'] = m.tts
@@ -273,18 +308,13 @@ async def start():
             d[n]['id'] = m.id
             d[n]['webhook_id'] = m.webhook_id
             d[n]['attachments'] = []
-            for a in m.attachments:
-                d[n]['attachments'].append({'id': a.id, 'size': a.size, 'height': a.height, 'width': a.width,
-                                            'filename': a.filename, 'url': a.url, 'proxy_url': a.proxy_url,
-                                            'is_spoiler()': a.is_spoiler(), 'download_id': b})
-                await a.save(f'attachments\\{b}_{a.filename}')
-                b += 1
+            for attachment in m.attachments:
+                d[n]['attachments'].append(await dump_attachment(attachment, i))
             d[n]['pinned'] = m.pinned
             d[n]['flags'] = dump_message_flags(m.flags)
             d[n]['reactions'] = [].extend(dump_reaction(reaction) for reaction in m.reactions)
             d[n]['activity'] = m.activity
             d[n]['application'] = m.application
-            d[n]['guild'] = await dump_guild(m.guild)
             d[n]['raw_mentions'] = m.raw_mentions
             d[n]['raw_channel_mentions'] = m.raw_channel_mentions
             d[n]['raw_role_mentions'] = m.raw_role_mentions
@@ -296,7 +326,7 @@ async def start():
             d[n]['system_content'] = m.system_content
             print(f'Message {n} got dumped successfully.')
             n += 1
-        json_dump(f'channels\\{c.id}.json', d)
+        json_dump(f'dumps/{c.id}/messages.json', d)
         print(f'{c.name} dumped successfully.')
     print(f'Operation completed successfully in {time() - x}')
 
