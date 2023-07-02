@@ -1,1 +1,9 @@
-{"token": "", bot: true, "channels": []}
+{
+  "token": "",
+  "bot": true,
+  "mode": [
+    0,
+    [
+	]
+  ]
+}
